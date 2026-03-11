@@ -22,6 +22,14 @@ jobs:
 
       - name: Run tests
         run: pytest
+      - name: Create artifact
+        run: zip -r build-package.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-package
+          path: build-package.zip
 
   docker-build:
     needs: test
